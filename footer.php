@@ -2,6 +2,9 @@
     <footer>
         <div class="container text-center">
             <div class="row">
+                <?php dynamic_sidebar( 'footer-widgets' ); ?>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     <div class="block">
                         <a href="#" class="footer-logo mb-4">Vex</a>
@@ -19,8 +22,7 @@
                                 <a href="#contact">CONTACT</a>
                             </li>
                         </ul>
-                        <p class="copyright-text">Copyright &copy; <a href="http://www.Themefisher.com">Themefisher</a>|
-                            All right reserved.</p>
+                        <p class="copyright-text"><?php echo cs_get_option('cpt_text'); ?></p>
                     </div>
                 </div>
             </div>

@@ -231,6 +231,33 @@ CSF::createSection(
 );
 
 
+/**
+ * ==========================================
+ * Slider Section
+ * ==========================================
+ */
+CSF::createSection(
+    $prefix,
+    [
+        'title'  => __( 'Slider Section', 'shaper-wp' ),
+        'fields' => [
+            [
+                'id'      => 'slider_navigation',
+                'type'    => 'switcher',
+                'title'   => __('Slider Navigation', 'shaper-wp'),
+                'default' => true
+            ],
+            [
+                'id'      => 'slider_pagination',
+                'type'    => 'switcher',
+                'title'   => __('Slider Pagination', 'shaper-wp'),
+                'default' => false
+            ],
+        ]
+    ]
+);
+
+
 
 
 
@@ -300,13 +327,63 @@ CSF::createSection(
 CSF::createSection(
     $prefix,
     [
-        'title'  => __( 'Footer Options', 'shaper-wp' ),
+        'title'  => __( 'Testimonial Section', 'shaper-wp' ),
         'fields' => [
             [
-                'id'    => 'opt-text',
-                'type'  => 'text',
-                'title' => 'Simple Text',
+                'id'      => 'testimonial_section_title',
+                'type'    => 'text',
+                'title'   => __( 'Section Title', 'shaper-wp' ),
+                'default' => 'Watch Review'
+            ],
+            [
+                'id'     => 'testimonilas',
+                'type'   => 'repeater',
+                'title'  => __( 'Testimonials', 'shaper-wp' ),
+                'fields' => [
+                    [
+                        'id'    => 'testimonial_icon',
+                        'type'  => 'icon',
+                        'title' => __( 'Icon', 'shaper-wp' )
+                    ],
+                    [
+                        'id'    => 'testimonial_content',
+                        'type'  => 'textarea',
+                        'title' => __( 'Content', 'shaper-wp' )
+                    ],
+                    [
+                        'id'    => 'testimonial_img',
+                        'type'  => 'upload',
+                        'title' => __( 'Author Image', 'shaper-wp' )
+                    ],
+                    [
+                        'id'    => 'author_name',
+                        'type'  => 'text',
+                        'title' => __( 'Author Name', 'shaper-wp' )
+                    ],
+                    [
+                        'id'    => 'author_designation',
+                        'type'  => 'text',
+                        'title' => __( 'Author Designation', 'shaper-wp' )
+                    ]
+                ]
             ]
         ]
     ]
 );
+
+
+CSF::createSection(
+    $prefix,
+    [
+        'title'  => __( 'Footer Options', 'shaper-wp' ),
+        'fields' => [
+            [
+                'id'    => 'cpt_text',
+                'type'  => 'wp_editor',
+                'title' => __( 'Footer Copyright Text', 'shaper-wp' )
+            ]
+        ]
+    ]
+);
+
+

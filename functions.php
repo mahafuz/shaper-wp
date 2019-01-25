@@ -13,7 +13,7 @@ if( ! function_exists( 'get_all_cf7' ) ) {
 
             $cf7[get_the_ID().'|'.get_the_title() ] = get_the_title();
         }
-        wp_reset_query();
+        wp_reset_postdata();
 
         return $cf7;
     }
@@ -27,6 +27,7 @@ class Shaper_Core {
     public function __construct() {
         add_action( 'wp_enqueue_scripts', [$this, 'add_shaper_scripts'] );
         add_action( 'wp_enqueue_scripts', [$this, 'add_shaper_styles'] );
+        add_action('widgets_init', [$this, 'shaper_widget']);
         $this->register_shaper_menu();
         $this->include_cs_framework();
 
@@ -126,7 +127,8 @@ class Shaper_Core {
 
     public function register_shaper_menu() {
         register_nav_menus([
-            'primary_menu' => __( 'Primary Menu', 'shaper-wp' )
+            'primary_menu' => __( 'Primary Menu', 'shaper-wp' ),
+            'footer_menu'  => __( 'Footer Menu', 'shaper-wp' ),
         ]);
     }
 
@@ -138,6 +140,18 @@ class Shaper_Core {
     public function include_cs_framework() {
         require_once get_template_directory() . '/csframework/codestar-framework.php';
         require_once get_template_directory() . '/inc/shaper-theme-options.php';
+    }
+
+    public function shaper_widget() {
+        register_sidebar([
+            'name'          => __( 'Footer Widgets', 'shaper-wp' ),
+            'id'            => 'footer-widgets',
+            'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'shaper-wp' ),
+            'before_widget' => '<div class="col-md-3 text-left"><div class="footer-widget">',
+            'after_widget'  => '</div></div>',
+            'before_title'  => '<h4 class="widget-title">',
+            'after_title'   => '</h4>'
+        ]);
     }
 
 
@@ -164,3 +178,4 @@ function dump($data, $wish = 1) {
 }
 
 
+add_theme_support( 'post-thumbnails' );
